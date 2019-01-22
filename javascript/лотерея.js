@@ -6,30 +6,29 @@
 // return: the firstname of the participant whose rank is n (ranks are numbered from 1)
 
 function rank(st, we, n) {
-	if (st.length === 0) { console.log( "No participants")};
-	st = st.split(',');
-	if (n > st.length) { console.log("Not enough participants")};
-	if (st.length === 1 && n) { console.log(st[0])};
-   const abc = 'abcdefghijklmnopqrstvuwxyz';
+	if (st.length === 0) { return "No participants"};
+  st = st.split(',');
+  if (st.length === 1 && n) {return st[0]};
+	if (n > st.length) { return "Not enough participants"};
+   const abc = 'abcdefghijklmnopqrstuvwxyz';
    st = st.map((name, i) => {
    	name = name.toLowerCase();
    	let scoreOfName = 0;
-   	for (let i = 0; i < name.length; i++) {
-   		let pos = abc.indexOf(name[i]) + 1;
+   	for (let j = 0; j < name.length; j++) {
+   		let pos = abc.indexOf(name[j]) + 1;
    		scoreOfName+=pos;
    	};
    	return [name, (scoreOfName + name.length) * we[i]];
-   })
-   console.log(st)
-   st = st.sort((a,b) => {
-   		if (a[1] === b[1]) {
-   			return a[0] - b[0];
-   		} else {
+   }).sort((a,b) => {
+   	if (a[1] !== b[1]) {
    			return b[1] - a[1];
+   		} else if (a[0] > b[0]) {
+   			return 1;
+   		} else {
+   			return -1;
    		};
    }).map(item => item[0].charAt(0).toUpperCase() + item[0].slice(1));
-   console.log(st)
-   console.log(st[n - 1]);
+   return st[n - 1];
 };
 
 // rank("Addison,Jayden,Sofia,Michael,Andrew,Lily,Benjamin", [4, 2, 1, 4, 3, 1, 2], 3);

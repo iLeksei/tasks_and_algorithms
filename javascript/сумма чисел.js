@@ -1,8 +1,6 @@
 'use strict';
 
-let foo = [1,45,67,34,88,55,2,4,5,7,9,5,4,2,3];
-let target = 21;
-// вернуть стартовую позицию и длину 
+// вернуть статовую позицию и длину 
 
 // function findSum(arr, target) {
 // 	for (let i = 0; i < foo.length; i++) {
@@ -22,29 +20,30 @@ let target = 21;
 // };
 
 function findSum(arr,target) {
-	let nums = [],
+	let pos = 0,
+		numsLength = 1,
 		i = 1,
-		pos = 0,
 		acc = arr[pos];
 
-	while (i < arr.length) {
+	while (i <= arr.length) {
 		if (acc === target) {
-			console.log(`find! pos is ${i} and length is ${nums.length}`);
+			console.log(`find! pos is ${pos} and length is ${numsLength}`);
 			return;
 		} else if (acc > target) {
-			nums = [];
+			numsLength--;
+			acc = acc - arr[pos];
 			++pos;
-			acc = arr[pos];
-			i = pos + 1;
-		} else {
-			nums = [...nums, arr[i]];
+		} else if (acc < target) {
+			numsLength++;
 			acc+=arr[i];
-			i++; 
+			i++;
 		};
 	};
+	console.log(0)
 	return 'sum not finded';
 };
 
-
-
-findSum(foo, target);
+let target = 7; 
+let arr3 = [1,3,0,2,0,0,4,3,5,7,6];
+// arr3 = [10,0,15];
+findSum(arr3, target);

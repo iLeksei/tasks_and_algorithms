@@ -2,6 +2,7 @@
 
 const arr = [312,32,35,2,132,3,4346,568,5,2,1];
 
+// algorithm complexity is O(N*logN)
 function quick_sort(arr = [], leftBorder, rightBorder) {
     if (!arr || arr.length < 2) return arr;
 

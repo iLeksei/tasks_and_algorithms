@@ -9,7 +9,6 @@ const stations = {
 };
 
 // use Greedy-algorithm, because there is a set covering problem.
-
 const find_states = () => {
     const result_stations = new Set();
 
@@ -18,12 +17,11 @@ const find_states = () => {
         let covered_states = new Set();
         for (const station in stations) {
             const current_states = stations[station];
-            console.log("current station: " + station);
+            console.log(station)
             const current_covered = new Set([...states_needed].filter( x => current_states.has(x)));
-            console.log("current_covered: " + JSON.stringify(current_covered))
+            console.log(current_covered)
             if (current_covered.size > covered_states.size) {
                 covered_states = current_covered;
-                console.log('covered_states: ' + JSON.stringify(current_covered))
                 bestStation = station;
             }
         }

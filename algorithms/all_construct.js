@@ -1,4 +1,8 @@
+// m = target.length
+// n = wordBank.length
 
+// O(n^m) time
+// O(m) space
 
 const allConstruct = (target = "", wordBank = [], memo = {}) => {
     if (target in memo) return memo[target];

@@ -6,42 +6,66 @@
 //  laptop    	    |  1.5 | 1.5  | 2.0  | 3.5  |
 //	stereo			|  1.5 | 1.5  | 2.0  | 3.5  |
 const goods = [
-    { name: "guitar", price: 1500, weight: 1 },
-    { name: "lego", price: 500, weight: 1 },
-    { name: "toy", price: 500, weight: 1 },
-    //{ name: "iphone", price: 2000, weight: 1 },
-    { name: "laptop", price: 2000, weight: 3 },
-    { name: "stereo", price: 3000, weight: 4 },
+    { name: "guitar", price: 10, weight: 1 },
+    { name: "lego", price: 10, weight: 1 },
+    { name: "toy", price: 10, weight: 1 },
+    { name: "iphone", price: 20, weight: 1 },
+    { name: "laptop", price: 20, weight: 3 },
+    { name: "stereo", price: 30, weight: 4 },
 ];
 
-//todo it does not work
-const stealProfitableGoods = (goods = [], knapsackVolume = 5) => {
-    let result_grid = [];
-    let result_set = ""
-    let max_profit = 0;
+// i = row_num
+// w = col_num
+// V[i,w] = max(V[i - 1, w], V[i - 1, w - weight[i]] + profit[i])
 
-    for (let i = 0; i < goods.length; i++) {
-        let currentGood = goods[i];
-        result_grid.push([]);
-        for ( let j = 0; j < knapsackVolume; j++ ) {
-            let prevGood = goods[i - 1];
-            let currentProfit = currentGood["price"];
-            if (prevGood) {
-                currentProfit = prevGood["weight"] + currentGood["weight"] <= knapsackVolume ?
-                    prevGood["price"] + currentGood["price"] : currentGood["price"];
-            }
+const useKnapsack = (goods = [], knapsackVolume = 5) => {
+    let grid = new Array(goods.length + 1)
+        .fill()
+        .map((i) => new Array(knapsackVolume + 1));
 
-            result_grid[i][j] = currentProfit;
-            if (currentProfit > max_profit) {
-                result_set = currentGood["name"] + ", " + (prevGood ? prevGood["name"] : "");
-                max_profit = currentProfit;
+    grid[0].fill(0);
+    grid.map( (i, idx) => {grid[idx][0] = 0});
+
+    for (let row_num = 1; row_num <= goods.length; row_num++) {
+        for (let col_num = 1; col_num <= knapsackVolume ; col_num++) {
+            let currItem = goods[row_num - 1];
+            let prevItemProfit = grid[row_num - 1][col_num];
+            if (currItem.weight <= col_num) {
+                grid[row_num][col_num] = Math.max(prevItemProfit, grid[row_num - 1][col_num - currItem.weight] + currItem.price);
+            } else {
+                grid[row_num][col_num] = prevItemProfit
             }
         }
     }
-    console.table(result_grid)
 
-    return result_set;
+    console.table(grid)
+    console.log("profit: " + grid[goods.length][knapsackVolume])
+
+    let items = getItems(grid, goods, knapsackVolume);
+    console.log("items: " + items);
+
 }
 
-let result = stealProfitableGoods(goods, 5);
-console.log(result);
+const getItems = (grid, goods, cursor) => {
+    let result = "";
+    let currRow = goods.length;
+    let prevRow = goods.length - 1
+
+    while (currRow !== 0) {
+        let currentCost = grid[currRow][cursor];
+        let prevCost = grid[prevRow][cursor];
+        if (currentCost !== prevCost) {
+            let pickedItem = goods[currRow - 1];
+            result += pickedItem.name + "(" + pickedItem.price + "), "
+            cursor -= pickedItem.weight;
+        } else {
+
+        }
+        currRow = prevRow;
+        prevRow -= 1;
+    }
+    return result;
+}
+
+useKnapsack(goods, 5); // iphone(20), toy(10), lego(10), guitar(10),
+

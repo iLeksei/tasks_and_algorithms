@@ -78,8 +78,6 @@ const reverse_linked_list = (list) => {
     let previous = null;
 
     while(curr !== null) {
-        // console.log("curr: " + JSON.stringify(curr));
-        // console.log("prev: " + JSON.stringify(previous));
         let nextNode = JSON.parse(JSON.stringify(curr.next));
         curr.next = previous;
         previous = curr;

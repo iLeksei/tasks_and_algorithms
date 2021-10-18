@@ -9,12 +9,12 @@ function insertion_sort(arr = []) {
 
     for (let i = 1; i < arr.length; i++) {
         let curr = arr[i];
-        let j = i - 1;
-        while (j > -1 && curr < arr[j]) {
-            arr[j + 1] = arr[j];
-            j--;
+        let prevIdx = i - 1;
+        while (prevIdx > -1 && curr < arr[prevIdx]) {
+            arr[prevIdx + 1] = arr[prevIdx];
+            prevIdx--;
         }
-        arr[j + 1] = curr;
+        arr[prevIdx + 1] = curr;
     }
 }
 

@@ -14,9 +14,11 @@ const goods = [
     { name: "stereo", price: 30, weight: 4 },
 ];
 
-// i = row_num
-// w = col_num
-// V[i,w] = max(V[i - 1, w], V[i - 1, w - weight[i]] + profit[i])
+// r = row_num  <-- our thing
+// c = col_num  <-- our weighs
+// V[r,c] = max(V[r - 1, c], V[r - 1, c - weight[r]] + profit[r])
+// in other words: try to find max value between previous row and
+
 
 const useKnapsack = (goods = [], knapsackVolume = 5) => {
     let grid = new Array(goods.length + 1)

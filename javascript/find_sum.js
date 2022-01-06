@@ -1,33 +1,16 @@
 'use strict';
 
-// вернуть статовую позицию и длину 
+// find start position and amount of numbers for getting @target
 
-// function findSum(arr, target) {
-// 	for (let i = 0; i < foo.length; i++) {
-// 		for (let j = i, acc = 0, NumLength = []; j < foo.length; j++) {
-// 			acc+=foo[j];
-// 			NumLength.push(foo[j]);
-// 			if (acc > target) break;
-// 			if (acc === target) {
-// 				console.log(`position is ${i} and length is ${NumLength.length}`);
-// 				return
-// 			} else {
-// 				continue;
-// 			};
-// 		}
-// 	}
-// 	return 'sum not finded'
-// };
-
-function findSum(arr,target) {
+function findSum(arr, target) {
 	let pos = 0,
 		numsLength = 1,
 		i = 1,
-		acc = arr[pos];
+		acc = arr[pos]; //initial value
 
 	while (i <= arr.length) {
 		if (acc === target) {
-			console.log(`find! pos is ${pos} and length is ${numsLength}`);
+			console.log(`found! pos is ${pos} and length is ${numsLength}`);
 			return;
 		} else if (acc > target) {
 			numsLength--;
@@ -40,7 +23,7 @@ function findSum(arr,target) {
 		};
 	};
 	console.log(0)
-	return 'sum not finded';
+	return 'sum not found';
 };
 
 let target = 7; 

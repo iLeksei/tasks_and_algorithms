@@ -78,7 +78,7 @@ const reverse_linked_list = (list) => {
     let previous = null;
 
     while(curr !== null) {
-        let nextNode = JSON.parse(JSON.stringify(curr.next));
+        let nextNode = curr.next;
         curr.next = previous;
         previous = curr;
         curr = nextNode;

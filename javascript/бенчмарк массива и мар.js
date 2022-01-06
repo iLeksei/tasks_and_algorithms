@@ -17,7 +17,7 @@ for (let i = 0; i < 1000000; i++) {
 
 function benchmark(test, search) {
 	
-	let date = new Date().getMilliseconds();
+	let start = performance.now()
 
 	if (test instanceof Array) {
 		let found = test.find(item => {
@@ -31,9 +31,9 @@ function benchmark(test, search) {
 		found = null;
 	}
 
-	date = performance.now() - new Date().getMilliseconds();
-	console.log(date);
-	return date;
+	let result = performance.now() - start;
+	console.log(result);
+	return result;
 };
 
 console.log(benchmark(testArr, 'test 10233') - benchmark(testMap, 'test 10233'))

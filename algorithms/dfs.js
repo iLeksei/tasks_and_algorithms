@@ -38,7 +38,7 @@ function dfs(node, searchValue) {
 
     for (let i = 0; i < node.children.length; i++) {
         const result = dfs(node.children[i], searchValue);
-        if (result && result.value === searchValue) { return result};
+        if (result && result.value) { return result};
     }
     return null;
 }

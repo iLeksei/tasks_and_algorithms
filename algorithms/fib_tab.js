@@ -11,4 +11,16 @@ const fibTab = (n) => {
     return table[n];
 }
 
-console.log(fibTab(5));
+console.log(fibTab(7));
+
+function findFibTab(num) {
+    if (!num) { return null };
+    let table = Array(num).fill(1);
+
+    for (let i = 2; i < table.length; i++) {
+        table[i] = table[i - 1] + table[i - 2];
+    }
+    return table[table.length - 1]
+}
+
+console.log(findFibTab(7));

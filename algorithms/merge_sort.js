@@ -25,15 +25,10 @@ function sort_and_merge(leftArr, rightArr) {
 }
 
 function merge_sort(arr = []) {
-    if (!arr || arr.length < 2) { return arr; };
-
+    if (!arr || arr.length < 2) { return arr; }
     const middle = Math.floor(arr.length / 2);
-    const leftPart = arr.slice(0, middle);
-    const rightPart = arr.slice(middle, arr.length);
-
-    // console.log(leftPart)
-    // console.log(rightPart)
-    return sort_and_merge(merge_sort(leftPart), merge_sort(rightPart));
+    const leftArr = arr.splice(0, middle);
+    return sort_and_merge(merge_sort(leftArr), merge_sort(arr));
 }
 
 

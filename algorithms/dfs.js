@@ -1,47 +1,60 @@
-class TreeNode {
-    constructor(value, children = []) {
-        this.value = value;
-        this.children = children;
+const dfsRecursivePreOrder = (node, arr = []) => {
+    if(node) {
+        arr.push(node.value);
+        if(node.left) dfsRecursivePreOrder(node.left, arr);
+        if(node.right) dfsRecursivePreOrder(node.right, arr);
     }
-
-    add(child) {
-        this.children.push(child);
-    }
-};
-
-const n1 = new TreeNode("n1");
-const n2 = new TreeNode("n2");
-const n3 = new TreeNode("n3");
-const n4 = new TreeNode("n4");
-const n5 = new TreeNode("n5");
-const n6 = new TreeNode("n6");
-const n7 = new TreeNode("n7");
-const n8 = new TreeNode("n8");
-
-n1.add(n2);
-n1.add(n3);
-n2.add(n4);
-n2.add(n5);
-n3.add(n6);
-n3.add(n7);
-n3.add(n8);
-
-/**
- *              n1
- *        n2            n3
- *     n4   n5        n6   n7   n8
- */
-
-function dfs(node, searchValue) {
-    if (node.value === searchValue ) return node;
-    if (!node || !searchValue) { return null };
-
-    for (let i = 0; i < node.children.length; i++) {
-        const result = dfs(node.children[i], searchValue);
-        if (result && result.value) { return result};
-    }
-    return null;
+    return arr;
 }
 
-const result = dfs(n1, "n7");
+const dfsRecursiveInOrder = (node, arr = []) => {
+    if(node){
+        if(node.left) dfsRecursiveInOrder(node.left, arr);
+        arr.push(node.value);
+        if(node.right) dfsRecursiveInOrder(node.right, arr);
+    }
+    return arr;
+}
+
+const dfsRecursivePostOrder = (node, arr = []) => {
+    if(node) {
+        if(node.left) dfsRecursivePostOrder(node.left, arr);
+        if(node.right) dfsRecursivePostOrder(node.right, arr);
+        arr.push(node.value);
+    }
+    return arr;
+}
+
+const tree = {
+    value: 1,
+    left: {
+        value: 2,
+        left: {
+            value: 4,
+            left: {
+                value: 8,
+            },
+            right: {
+                value: 9
+            }
+        },
+        right: {
+            value: 5,
+            left: {
+                value: 10,
+            },
+        },
+    },
+    right: {
+        value: 3,
+        left: {
+            value: 6,
+        },
+        right: {
+            value: 7,
+        },
+    }
+}
+
+const result = dfsRecursivePreOrder(tree);
 console.log(result)

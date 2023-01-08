@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Toasts</title>
+</head>
+<body>
+    <div id="inputs">
+        <textarea id="message-content" placeholder="Message content..."></textarea>
+
+        <div class="input">
+            <lable for="duration">Duration</lable>
+            <input id="duration" type="number" min="500" value="3000" />
+        </div>
+        <div class="input">
+            <lable for="cancelable">Is Cancelable</lable>
+            <input id="cancelable" type="checkbox"/>
+        </div>
+
+        <div class="input">
+            <lable for="success">Success</lable>
+            <input id="success" type="radio" name="type" value="seccess" checked/>
+
+            <lable for="error">Error</lable>
+            <input id="error" type="radio" name="type" value="error" />
+        </div>
+
+        <button id="add-button">Add Toast</button>
+        <button id="clear-button">Clear Toasts</button>
+    </div>
+
+    <div id="toasts"></div>
+</body>
+</html>

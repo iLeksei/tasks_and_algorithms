@@ -38,3 +38,5 @@ function largestRange(array) {
     if (!result.length) return [];
     return [result[0], result[result.length - 1]];
 }
+
+console.log(largestRange([1, 11, 3, 0, 15, 5, 2, 4, 10, 7, 12, 6]))

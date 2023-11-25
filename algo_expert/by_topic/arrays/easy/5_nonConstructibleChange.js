@@ -11,17 +11,22 @@
 // output 20
 
 
+// [1, 2, 5, 7] result === 4
+//  1
+//  2
+//  1 + 2
+//  ??? <- result
+//  5   coin > sum + 1
+//  5 + 1
 function nonConstructibleChange(coins) {
-    coins = coins.sort((a, b) => a - b);
-    let currentChange = 0;
+    coins.sort((a, b) => a - b);
+    let sum = 0;
     for (let coin of coins) {
-        if (coin > currentChange + 1) {
-            return currentChange + 1;
-        }
-        currentChange +=coin;
+        if (coin > sum + 1) return sum + 1;
+        sum += coin;
     }
-
-    return currentChange + 1;
+    return sum + 1;
 }
 
-console.log(nonConstructibleChange([1,2,5]));
+//console.log(nonConstructibleChange([1,2,5])); // 3
+console.log(nonConstructibleChange([6, 4, 5, 1, 1, 8, 9])); // 3

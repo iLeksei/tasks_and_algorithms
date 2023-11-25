@@ -17,14 +17,14 @@
 // output = [11, -1]
 
 function twoNumberSum(array, targetSum) {
-  const acc = new Set();
-    for (let num of array) {
-      let complement = targetSum - num;
-        if (acc.has(complement)) {
-          return [num, complement]
-        }
-      acc.add(num)
+  const nums = new Set();
+  for (let num of array) {
+    let diff = targetSum - num;
+    if (nums.has(diff)) {
+      return [num, diff];
     }
+    nums.add(num);
+  }
   return [];
 }
 

@@ -1,23 +1,21 @@
-
-    
-//     Write a function that takes in a string of lowercase English-alphabet letters
-//     and returns the index of the string's first non-repeating character.
-//
-//     The first non-repeating character is the first character in a string that
-//     occurs only once.
-//
-//     If the input string doesn't have any non-repeating characters, your function
-//     should return -1.
-//
-// Sample Input
-// string = "abcdcaf"
-//
-// Sample Output
-// 1 // The first non-repeating character is "b" and is found at index 1.
-
+/**
+ *     Write a function that takes in a string of lowercase English-alphabet letters
+ *     and returns the index of the string's first non-repeating character.
+ *
+ *     The first non-repeating character is the first character in a string that
+ *     occurs only once.
+ *
+ *     If the input string doesn't have any non-repeating characters, your function
+ *     should return -1.
+ *
+ * Sample Input
+ * string = "abcdcaf"
+ *
+ * Sample Output
+ * 1 * The first non-repeating character is "b" and is found at index 1.
+ */
 
 function firstNonRepeatingCharacter(string) {
-    // Write your code here.
     let chars = {};
     for (let ch of string) {
         if (ch in chars) {
@@ -34,3 +32,15 @@ function firstNonRepeatingCharacter(string) {
     }
     return -1;
 }
+
+function firstNonRepeatingCharacter2(string) {
+    for (let i = 0; i < string.length; i++) {
+        if (i === string.lastIndexOf(string[i])) {
+            return i
+        }
+    }
+    return -1;
+}
+
+console.log(firstNonRepeatingCharacter2("abcdcaf")) //b
+console.log(firstNonRepeatingCharacter2("accqwlijqlcwehnnacakdbawcdcaf")) //i

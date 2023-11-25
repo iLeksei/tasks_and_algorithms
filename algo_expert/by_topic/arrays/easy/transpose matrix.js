@@ -45,5 +45,22 @@
 
 function transposeMatrix(matrix) {
     // Write your code here.
-    return [];
+    let result = [];
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[i].length; j++) {
+            if (result[j]) {
+                result[j] = [...result[j], matrix[i][j]]
+                continue;
+            }
+            result.push([matrix[i][j]]);
+        }
+    }
+
+    return result;
 }
+
+console.log(transposeMatrix([
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]))

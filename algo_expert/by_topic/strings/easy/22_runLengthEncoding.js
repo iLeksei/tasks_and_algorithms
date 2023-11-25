@@ -20,5 +20,29 @@
 
 
 function runLengthEncoding(string) {
-    // Write your code here.
+    let result = "";
+    const CHAR_NUM_LIMIT = 9;
+    let currentLetterCounter = 1;
+
+    for (let i = 0; i < string.length; i++) {
+        if (currentLetterCounter === CHAR_NUM_LIMIT) {
+            result += `9${string[i]}`;
+            currentLetterCounter = 1;
+            continue;
+        }
+
+        if(string[i] === string[i + 1] ) {
+            ++currentLetterCounter;
+            continue;
+        }
+
+        result += (currentLetterCounter === 1 ? string[i] : `${currentLetterCounter}${string[i]}`);
+        currentLetterCounter = 1;
+    }
+
+    return result;
 }
+
+console.log(runLengthEncoding("AAAAAAAAAAAA")) // 9A3A
+console.log(runLengthEncoding("AAAABBB")) // 4A3B
+console.log(runLengthEncoding("ABBCCC")) // A2B3C

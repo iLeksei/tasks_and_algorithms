@@ -28,33 +28,32 @@
 
  */
 
+// [-1, 3, 5,10, 20, 28]
+// [15, 17, 26, 135, 135]
 function smallestDifference(arrayOne, arrayTwo) {
-    // Write your code here.
     arrayOne.sort((a,b) => a - b);
     arrayTwo.sort((a,b) => a - b);
-    let closestDiff = Infinity;
-    let closestResult = [];
-    let cursorOne = 0;
-    let cursorTwo = 0;
 
-    while (cursorOne < arrayOne.length && cursorTwo < arrayTwo.length) {
-        let tempDiff = Math.abs(arrayOne[cursorOne] - arrayTwo[cursorTwo]);
-        if (tempDiff === 0) {
-            return  [arrayOne[cursorOne], arrayTwo[cursorTwo]];
-        }
-        if (tempDiff < closestDiff) {
-            closestDiff = tempDiff;
-            closestResult = [arrayOne[cursorOne], arrayTwo[cursorTwo]];
+    let smallestDiff = Infinity;
+    let firstArrIdx = 0;
+    let secondArrIdx = 0;
+    let result = [];
+
+    while (firstArrIdx < arrayOne.length && secondArrIdx < arrayTwo.length) {
+        let tempDiff = Math.abs(arrayOne[firstArrIdx] - arrayTwo[secondArrIdx]);
+        if (tempDiff < smallestDiff) {
+            smallestDiff = tempDiff;
+            result = [arrayOne[firstArrIdx], arrayTwo[secondArrIdx]];
         }
 
-        if (arrayOne[cursorOne] < arrayTwo[cursorTwo]) {
-            cursorOne++;
+        if (arrayOne[firstArrIdx] < arrayTwo[secondArrIdx]) {
+            firstArrIdx++;
         } else {
-            cursorTwo++
+            secondArrIdx++;
         }
-        continue;
     }
-    return closestResult;
+
+    return result;
 }
 
 console.log(smallestDifference([-1, 5, 10, 20, 28, 3], [26, 134, 135, 15, 17])); // [28, 26]

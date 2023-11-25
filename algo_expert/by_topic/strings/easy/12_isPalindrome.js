@@ -11,19 +11,18 @@
 
 
 function isPalindrome(string) {
-    // Write your code here.
     let leftCursor = 0;
     let rightCursor = string.length - 1;
-    let result = true;
 
-    while(leftCursor <= rightCursor) {
-        if (string[leftCursor] !== string[rightCursor]) {
-            return false;
-        }
+    while (leftCursor <= rightCursor) {
+        if (string[leftCursor] !== string[rightCursor]) return false;
         leftCursor++;
         rightCursor--;
     }
-    return result;
+
+    return true;
 }
 
 console.log(isPalindrome("abcdcba")) //true
+console.log(isPalindrome("abba")) //true
+console.log(isPalindrome("abcd3cba")) //false

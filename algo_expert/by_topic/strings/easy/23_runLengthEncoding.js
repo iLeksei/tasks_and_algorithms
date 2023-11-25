@@ -39,3 +39,6 @@ function runLengthEncoding(string) {
 
 console.log(runLengthEncoding("AAAAAAAAAAAAABBCCCCDD")) // 9A4A2B4C2D
 // console.log(runLengthEncoding("122333")) // 112233
+console.log(runLengthEncoding("AAAAAAAAAAAA")) // 9A3A
+console.log(runLengthEncoding("AAAABBB")) // 4A3B
+console.log(runLengthEncoding("ABBCCC")) // A2B3C

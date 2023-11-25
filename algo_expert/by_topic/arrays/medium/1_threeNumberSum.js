@@ -20,35 +20,32 @@
  */
 
 function threeNumberSum(array, targetSum) {
-    // Write your code here.
-    array.sort((a,b) => a - b)
+    array.sort((a, b) => a - b);
     let result = [];
+
     for (let i = 0; i < array.length; i++) {
-        let currNum = array[i];
         let leftCursor = i + 1;
         let rightCursor = array.length - 1;
 
         while (leftCursor < rightCursor) {
-            let tempSum = currNum + array[leftCursor] + array[rightCursor];
-            if (targetSum === tempSum) {
-                result.push([currNum, array[leftCursor], array[rightCursor]]);
+            let currentSum = array[i] + array[leftCursor] + array[rightCursor];
+            if (currentSum === targetSum)  {
+                result.push([array[i], array[leftCursor], array[rightCursor]])
                 leftCursor++;
                 rightCursor--;
-                continue;
             }
 
-            if (tempSum > targetSum) {
+            if (currentSum > targetSum) {
                 rightCursor--;
-                continue;
-            }
-            if (tempSum < targetSum) {
-                leftCursor++;
-                continue;
             }
 
+
+            if (currentSum < targetSum) {
+                leftCursor++;
+            }
         }
-
     }
+
     return result;
 }
 

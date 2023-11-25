@@ -1,4 +1,3 @@
-
 /**
     Write a function that takes in an array of integers and returns a boolean
     representing whether the array is monotonic.
@@ -17,18 +16,17 @@
  */
 
 function isMonotonic(array) {
-    // Write your code here.
-    if (array.length === 2) return true;
-    let isNegative = array[0] < 0;
-
-    for (let i = 0; i < array.length; i++) {
-        if (isNegative && array[i] < array[i + 1]) {
-            return false
+    if (array.length <= 2) return true;
+    let isIncreasing = array[0] <= array[1];
+    for (let i = 1; i < array.length; i++) {
+        if (isIncreasing && array[i + 1] < array[i]) {
+            return false;
         }
-        if (!isNegative && array[i] > array[i + 1]) {
-            return false
+        if (!isIncreasing && array[i + 1] > array[i]) {
+            return false;
         }
     }
-
     return true;
 }
+
+console.log(isMonotonic([-1, -5, -10, -1100, -1100, -1101, -1102, -9001])) // true

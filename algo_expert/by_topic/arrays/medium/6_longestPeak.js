@@ -61,7 +61,7 @@ function longestPeak(array) {
     return result;
 }
 
-// console.log(longestPeak([1, 2, 3, 3, 4, 0, 10, 6, 5, -1, -3, 2, 3])) // 6 [1, 2, 3, 3, 4, 0]
+console.log(longestPeak([1, 2, 3, 3, 4, 0, 10, 6, 5, -1, -3, 2, 3])) // 6 [1, 2, 3, 3, 4, 0]
 // console.log(longestPeak([5, 4, 3, 2, 1, 2, 1])) // 3 [1, 2, 1]
 // console.log(longestPeak([1, 2, 3, 4, 5, 1])) // 6
 // console.log(longestPeak(  [1, 2, 3, 4, 5, 6, 10, 100, 1000])); // 0

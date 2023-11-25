@@ -23,5 +23,5 @@ function isValidSubsequence(array, sequence) {
     return seqCursor === sequence.length;
 }
 
-isValidSubsequence([23,4,1,3,4,6,9], [1,3,4]) // true;
-isValidSubsequence([23,4,1,6,9], [1,3,4]) // false;
+console.log(isValidSubsequence([23,4,1,3,4,6,9], [1,3,4])) // true;
+console.log(isValidSubsequence([23,4,1,6,9], [1,3,4])) // false;

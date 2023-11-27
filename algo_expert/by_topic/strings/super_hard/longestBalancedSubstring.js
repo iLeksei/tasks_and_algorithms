@@ -17,6 +17,10 @@
 * 4 * The longest balanced substring is "(())".
 */
 
+/**
+ * time: N
+ * space: N
+ */
 function longestBalancedSubstring(string) {
     let stack = [];
     let i = 0;

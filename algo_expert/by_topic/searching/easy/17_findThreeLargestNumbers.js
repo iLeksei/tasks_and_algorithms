@@ -3,26 +3,29 @@
  * Expamle:
  * @param array [11, 2, 5, -1, 24, -222, 244]
  * @returns {number[11, 24, 244]}
+ *
+ * time: N
+ * space: O(1)
  */
-
 function findThreeLargestNumbers(array) {
-    // Write your code here.
-    let max = -Infinity;
-    let mid = -Infinity;
     let min = -Infinity;
-    for (let i = 0; i < array.length; i++) {
-        if (array[i] > max) {
+    let mid = -Infinity;
+    let max = -Infinity;
+
+    for (const num of array) {
+        if (num > max) {
             min = mid;
             mid = max;
-            max = array[i]
-        } else if (array[i] > mid) {
+            max = num;
+        } else if (num > mid) {
             min = mid;
-            mid = array[i];
-        } else if (array[i] > min) {
-            min = array[i]
+            mid = num;
+        } else if (num > min) {
+            min = num;
         }
     }
-    return [min, mid, max]
+
+    return [max, mid, min];
 }
 
 

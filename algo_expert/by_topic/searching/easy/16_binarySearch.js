@@ -1,17 +1,16 @@
 
 function binarySearch(array, target) {
-    // Write your code here.
-    let left = 0;
-    let right = array.length;
+    let leftCursor = 0;
+    let rightCursor = array.length;
 
-    while (left <= right) {
-        let pivot = Math.floor((left + right) / 2);
-        if (array[pivot] === target) return pivot;
-        else if (array[pivot] < target) left = pivot + 1;
-        else right = pivot - 1;
+    while (leftCursor < rightCursor) {
+        let pivot = Math.floor((leftCursor + rightCursor) / 2);
+        if (array[pivot] === target) return array[pivot]
+        else if (target > array[pivot]) leftCursor = pivot + 1;
+        else if (target < array[pivot]) rightCursor = pivot - 1;
     }
 
-    return -1;
+    return target;
 }
 
 console.log(binarySearch([0, 1, 21, 33, 45, 46, 61, 71, 72, 73], 33))

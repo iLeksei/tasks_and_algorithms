@@ -25,20 +25,25 @@
     // Time: O(n) | Space: O(n) -&gt; where n is the length
     // of the input string
 function balancedBrackets(string) {
-    const matchingBrackets = {
-        ')': '(',
-        ']': '[',
-        '}': '{'
+    let stack = [];
+    let closeBrackets = {
+        ")" : "(",
+        "]" : "[",
+        "}" : "{",
+    };
+    let openBrackets = "({[";
+
+    for (const bracket of string) {
+        if (openBrackets.includes(bracket)) {
+            stack.push(bracket);
+        } else {
+            let item = stack.pop();
+            if (item !== closeBrackets[bracket]) return false;
+        }
     }
-    const openingBrackets = '([{';
-    const stack = [];
-    for (const char of string) {
-        if (openingBrackets.includes(char)) {
-            stack.push(char);
-        }
-        if (char in matchingBrackets) {
-            const matchingBracket = stack.pop();
-            if (matchingBracket !== matchingBrackets[char]) return false;
-        }
-    }  return stack.length === 0;
+
+    return stack.length === 0;
 }
+
+// console.log(balancedBrackets("([])(){}(())()()")) // true
+console.log(balancedBrackets("([])(){}(())()())")) // false

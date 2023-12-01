@@ -20,10 +20,10 @@
 
         Sample Output
         output =  2
-            /   \
-          8      11
-        /  \    /  \
-      9     4  7    6
+                /   \
+              8      11
+            /  \    /  \
+          9     4  7    6
 */
 
 
@@ -36,17 +36,32 @@ class BinaryTree {
     }
 }
 
+
 function mergeBinaryTrees(tree1, tree2) {
     if (!tree1 && !tree2) return null;
-    if (!tree1 && tree2) return tree2;
-    if (tree1 && !tree2) return tree1;
-
-    tree1.value = tree1.value + tree2.value;
-    tree1.left = mergeBinaryTrees(tree1.left, tree2.left)
-    tree1.right = mergeBinaryTrees(tree1.right, tree2.right);
-
-    return tree1;
+    let node = new BinaryTree(tree1.value + tree2.value)
+    node.left = mergeBinaryTrees(tree1.left, tree2.left)
+    node.right = mergeBinaryTrees(tree1.right, tree2.right)
+    return node;
 }
 
-// Do not edit the line below.
-exports.mergeBinaryTrees = mergeBinaryTrees;
+let tree1 = {
+    value: 1,
+    left: {
+        value: 2,
+    },
+    right: {
+        value: 3,
+    }
+}
+
+let tree2 = {
+    value: 4,
+    left: {
+        value: 5,
+    },
+    right: {
+        value: 6,
+    }
+}
+console.log(mergeBinaryTrees(tree1, tree2)); //

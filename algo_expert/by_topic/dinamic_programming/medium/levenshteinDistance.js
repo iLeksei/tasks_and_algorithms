@@ -16,6 +16,34 @@
 
 
 function levenshteinDistance(str1 = "", str2 = "") {
-    // Write your code here.
+    let prevRow = new Array(str2.length + 1).fill(0);
+    let currRow = new Array(str2.length + 1).fill(0);
 
+    for (let j = 0; j < str2.length; j++) {
+        prevRow[j] = j
+    }
+    
+    for (let i = 1; i <= str1.length; i++) {
+        currRow[0] = i;
+
+        for (let j = 1; j <= str2.length; j++) {
+            if (str1[i - 1] === str2[i - 1]) {
+                currRow[j] = prevRow[j - 1];
+            } else {
+                currRow[j] = 1 + Math.min(
+                    currRow[j - 1],
+                    Math.min(
+                        prevRow[j],
+                        prevRow[j - 1]
+                    )
+                )
+            }
+        }
+        prevRow = currRow
+    }
+
+    console.table(currRow);
+    return currRow[str2.length - 1];
 }
+
+console.log(levenshteinDistance("kitten", "sitting")) // 3

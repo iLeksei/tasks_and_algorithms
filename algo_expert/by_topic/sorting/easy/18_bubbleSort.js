@@ -1,12 +1,8 @@
 function bubbleSort(array) {
-    // Write your code here.
-    if (!array || array.length < 2) return array;
-    let temp = null;
-
-    for (let i = array.length - 1; i >= 0; i--) {
-        for (let j = i - 1; j >= 0; j--) {
-            if (array[i] < array[j]) {
-                temp = array[i];
+    for (let i = 0; i < array.length; i++) {
+        for (let j = i + 1; j < array.length; j++) {
+            if (array[j] < array[i]) {
+                let temp = array[i];
                 array[i] = array[j];
                 array[j] = temp;
             }
@@ -14,3 +10,5 @@ function bubbleSort(array) {
     }
     return array;
 }
+
+console.log(bubbleSort([23, 1, 67, 2, 4, 768, 4])) // [1,2,4,4,23,67,768]

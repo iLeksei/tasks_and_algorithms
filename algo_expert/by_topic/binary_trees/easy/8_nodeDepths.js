@@ -1,16 +1,13 @@
-
-// The distance between a node in a Binary Tree and the tree's root is called the
-// node's depth.
-
-// Write a function that takes in a Binary Tree and returns the sum of its nodes'
-// depths.
-
-//     Each BinaryTree node has an integer value, a
-//     left child node, and a right child node. Children
-//     nodes can either be BinaryTree nodes themselves or
-//     None / null.
-
 /**
+ * Write a function that takes in a Binary Tree and returns the sum of its nodes' depths.
+ *
+ * Write a function that takes in a Binary Tree and returns the sum of its nodes' depths.
+ *
+ *  Each BinaryTree node has an integer value, a
+ *  left child node, and a right child node. Children
+ *  nodes can either be BinaryTree nodes themselves or
+ *   None / null.
+ *
  *        1
  *      |   \
  *     2     3       depth of the 2 is 1 + depth of the 3 is 1
@@ -22,6 +19,7 @@
 function nodeDepths(root) {
     // Write your code here.
     let result = 0
+
     function dive(node, level = 0) {
         result += level;
         if (node.left) {
@@ -32,6 +30,7 @@ function nodeDepths(root) {
             dive(node.right, level + 1)
         }
     }
+
     dive(root)
 
     return result;
@@ -39,18 +38,24 @@ function nodeDepths(root) {
 
 function nodeDepths2(root) {
     let result = 0;
-    function dive(node, level = 0) {
-        result += level
-        if (node.left) {
-            dive(node.left, level + 1)
+
+    function dive(tree, depth = 0) {
+        result += depth
+        if (!tree.left && !tree.right) {
+            return result;
         }
 
-        if (node.right) {
-            dive(node.right, level + 1)
+        if (tree.left) {
+            dive(tree.left, depth + 1);
+        }
+
+
+        if (tree.right) {
+            dive(tree.right, depth + 1);
         }
     }
 
-    dive(root);
+    dive(root)
     return result;
 }
 

@@ -40,18 +40,42 @@ class BinaryTree {
 }
 
 function binaryTreeDiameter(tree) {
-    // Write your code here.
-    const treeParameters = { maxDiameter: -Infinity };
-    getMaxDiameter(tree, treeParameters);
-    return treeParameters.maxDiameter;
+    let params = {maxDiameter: -Infinity};
+    getMaxDiameter(tree, params);
+    return params.maxDiameter;
 }
 
 function getMaxDiameter(tree, treeParameters) {
     if (!tree) return 0;
 
-    let leftSideCounter = getMaxDiameter(tree.left, treeParameters)
-    let rightSideCounter = getMaxDiameter(tree.right, treeParameters)
+    let leftValue = getMaxDiameter(tree.left, treeParameters);
+    let rightValue = getMaxDiameter(tree.right, treeParameters);
+
     treeParameters.maxDiameter = Math.max(
-        leftSideCounter + rightSideCounter, treeParameters.maxDiameter);
-    return Math.max(leftSideCounter + 1, rightSideCounter + 1);
+        leftValue + rightValue, treeParameters.maxDiameter
+    )
+    return Math.max(leftValue + 1, rightValue + 1);
 }
+
+let root = new BinaryTree(1);
+let n2 = new BinaryTree(2);
+let n3 = new BinaryTree(3);
+root.left = n2;
+root.right = n3;
+
+let n4 = new BinaryTree(4);
+let n5 = new BinaryTree(5);
+n2.left = n4;
+n2.right = n5;
+
+let n8 = new BinaryTree(8);
+let n9 = new BinaryTree(9);
+n4.left = n8;
+n4.right = n9;
+
+let n6 = new BinaryTree(6);
+let n7 = new BinaryTree(7);
+n3.left = n6;
+n3.right = n7;
+
+console.log(binaryTreeDiameter(root)) // 5

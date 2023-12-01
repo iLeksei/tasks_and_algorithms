@@ -1,17 +1,19 @@
-
-
 function insertionSort(array) {
-    // Write your code here.
     for (let i = 1; i < array.length; i++) {
-        let currNum = array[i];
+        let currentNum = array[i];
         let prevIdx = i - 1;
-        while(prevIdx > -1 && currNum < array[prevIdx]) {
+        while (currentNum < array[prevIdx] && prevIdx !== -1) {
             array[prevIdx + 1] = array[prevIdx];
-            prevIdx--
+            prevIdx--;
         }
-        array[prevIdx + 1] = currNum;
+        array[prevIdx + 1] = currentNum
     }
+
     return array;
 }
 
-console.log(insertionSort([34,1,3,7,3])) // [1,3,3,7,34]
+// 1) [2, 34, 5, 1, 3] <= move 2
+// 2) [2, 5, 34, 1, 3] <= move 5
+// 3) [1, 2, 5, 34, 3] <= move 1
+// 3) [1, 2, 3, 5, 34] <= move 3
+console.log(insertionSort([34, 2, 5, 1, 3])) // [1,2,3,5,34]

@@ -33,19 +33,44 @@ class BinaryTree {
 }
 
 function heightBalancedBinaryTree(tree) {
-    // Write your code here.
-    let treeInfo = { isBalanced: true };
-    calcHeight(tree, treeInfo);
-    return treeInfo.isBalanced;
+    let params = {isBalanced: true}
+    calcHeight(tree, params)
+    return params.isBalanced;
 }
 
 function calcHeight(node, treeInfo, height = 0) {
     if (!node) return height;
 
-    let leftHeight = calcHeight(node.left, treeInfo, height + 1);
-    let rightHeight = calcHeight(node.right, treeInfo, height + 1);
+    let leftHeight = calcHeight(node.left, treeInfo,height + 1);
+    let rightHeight = calcHeight(node.right, treeInfo,height + 1);
 
-    if (Math.abs(leftHeight - rightHeight) > 1) treeInfo.isBalanced = false
+    if (Math.abs(leftHeight - rightHeight) > 1) treeInfo.isBalanced = false;
 
     return Math.max(leftHeight, rightHeight);
 }
+
+let tree = {
+    value: 1,
+    left: {
+        value: 2,
+        left: {
+            value: 4,
+        },
+        right: {
+            value: 5,
+            left: {
+                value: 7
+            },
+            right: {
+                value: 8
+            }
+        }
+    },
+    right: {
+        value: 3,
+        right: {
+            value: 6
+        }
+    }
+}
+console.log(heightBalancedBinaryTree(tree))

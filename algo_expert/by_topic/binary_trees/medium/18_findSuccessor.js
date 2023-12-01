@@ -70,23 +70,3 @@ function getInOrderNodes(node, inOrderNodes = []) {
     return inOrderNodes;
 }
 
-// todo to fix
-function findSuccessor2(tree, node) {
-    // Write your code here.
-    if (node.right) {
-        let successor = node.right;
-        while (successor !== null) {
-            successor = successor.left;
-        }
-        return successor;
-    }
-
-    let currentNode = node;
-    while (
-        currentNode.parent !== null &&
-        currentNode.parent.right.value === currentNode.value
-        ) {
-        currentNode = currentNode.parent;
-    }
-    return currentNode.parent;
-}

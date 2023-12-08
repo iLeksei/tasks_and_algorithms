@@ -1,21 +1,25 @@
-
-// Write a function that takes in a Binary Search Tree (BST) and a target integer
-// value and returns the closest value to that target value contained in the BST.
-//
-// You can assume that there will only be one closest value
-
-
+/**
+ * Write a function that takes in a Binary Search Tree (BST) and a target integer
+ * value and returns the closest value to that target value contained in the BST.
+ * You can assume that there will only be one closest value
+ *
+ * time: O(N) amount of nodes
+ * space: O(N) nodes
+ */
 function findClosestValueInBst(tree, target) {
-    let closest = Infinity;
-    let currentNode = tree;
+   let closest = Infinity;
+   let stack = [tree];
 
-    while (currentNode !== null) {
-        if (Math.abs(currentNode.value - target) < Math.abs(closest - target) || closest === null) {
-            closest = currentNode.value
-        }
-        currentNode = currentNode.value < target ? currentNode.right : currentNode.left;
-    }
-    return closest;
+   while(stack.length > 0) {
+       let currentNode = stack.pop();
+       closest = Math.abs(currentNode.value - target) < Math.abs(closest - target) ?
+           currentNode.value : closest;
+
+       if (currentNode.left) stack.push(currentNode.left);
+       if (currentNode.right) stack.push(currentNode.right);
+   }
+
+   return closest;
 }
 
 // This is the class of the input tree. Do not edit.

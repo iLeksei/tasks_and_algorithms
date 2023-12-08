@@ -38,7 +38,6 @@ class BST {
 }
 
 function validateBst(tree, min = -Infinity, max = Infinity) {
-    // Write your code here.
     if (!tree) return true;
     if (tree.value < min || tree.value >= max) return false;
 
@@ -70,4 +69,21 @@ let bst = {
     }
 }
 
-console.log(validateBst(bst))
+console.log(validateBst(bst)) //false
+
+let bst2 = {
+    value: 5,
+    left: {
+        value: 4,
+        left: {
+            value: 2,
+        }
+    },
+    right: {
+        value: 10,
+        right: {
+            value: 12
+        }
+    }
+}
+console.log(validateBst(bst2)) //false

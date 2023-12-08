@@ -54,6 +54,96 @@ class BinaryTree {
     }
 }
 
+/**
+ * time: O(V * E) vertices * edges
+ * space: O(V) vertices
+ */
 function rightSiblingTree(root) {
     // Write your code here.
+    let siblings = new Map();
+    siblings.set(0, [root])
+
+    traverse(root, 0, siblings);
+    for (const [key, value] of siblings.entries()) {
+        let currentNode = null;
+        for (let i = 0; i < value.length; i++) {
+            currentNode = value[i];
+            if (!currentNode) continue;
+            if (!value[i + 1]) {
+                currentNode.right = null;
+            } else {
+                currentNode.right = value[i + 1];
+            }
+
+        }
+    }
+
+    debugger;
+    return root;
 }
+
+function traverse(node, depth = 0, siblings = new Map()) {
+    if (!node) return siblings;
+
+    if (!siblings.has(depth)) siblings.set(depth, []);
+    let nextDepth = depth + 1;
+
+    if (!siblings.has(nextDepth)) siblings.set(nextDepth, []);
+
+    if (node.left && node.right) siblings.get(nextDepth).push(node.left, node.right);
+
+    if (node.left && !node.right) siblings.get(nextDepth).push(node.left, null);
+
+    if (!node.left && node.right) siblings.get(nextDepth).push(null, node.right);
+
+    if (node.left) traverse(node.left, nextDepth, siblings);
+    if (node.right) traverse(node.right, nextDepth, siblings);
+
+    return siblings
+}
+
+
+let tree1 = {
+    value: 1,
+    left: {
+        value: 2,
+        left: {
+            value: 4,
+            left: {
+                value: 8,
+            },
+            right: {
+                value: 9,
+            }
+        },
+        right: {
+            value: 5,
+            right: {
+                value: 10,
+            }
+        }
+    },
+    right: {
+        value: 3,
+        left: {
+            value: 6,
+            left: {
+                value: 11,
+                left: {
+                    value: 14,
+                }
+            }
+        },
+        right: {
+            value: 7,
+            left: {
+                value: 12,
+            },
+            right: {
+                value: 13,
+            }
+        },
+
+    }
+};
+console.log(JSON.stringify(rightSiblingTree(tree1)))

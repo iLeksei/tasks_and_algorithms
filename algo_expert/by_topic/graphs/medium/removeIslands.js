@@ -52,6 +52,10 @@
  * ]
  */
 
+/**
+ *  time: O(N * M)
+ *  space: O(N * M)
+ */
 function removeIslands(matrix) {
     let islands = [];
     let badIslands = [];

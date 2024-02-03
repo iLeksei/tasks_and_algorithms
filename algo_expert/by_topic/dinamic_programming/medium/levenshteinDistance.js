@@ -14,14 +14,14 @@
 // Sample Output
 // 2 // insert "y"; substitute "c" for "d"
 
-
+//fixme
 function levenshteinDistance(str1 = "", str2 = "") {
     let prevRow = new Array(str2.length + 1).fill(0);
     let currRow = new Array(str2.length + 1).fill(0);
 
-    for (let j = 0; j < str2.length; j++) {
-        prevRow[j] = j
-    }
+    // for (let j = 0; j < str2.length; j++) {
+    //     prevRow[j] = j
+    // }
     
     for (let i = 1; i <= str1.length; i++) {
         currRow[0] = i;

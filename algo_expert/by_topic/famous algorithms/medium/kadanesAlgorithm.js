@@ -13,5 +13,12 @@
 
 
 function kadanesAlgorithm(array) {
-    // Write your code here.
+    let max = -Infinity;
+    let sum = 0;
+    for (const num of array) {
+        sum += num;
+        max = Math.max(max, sum);
+        if (sum < 0) sum = 0;
+    }
+    return max;
 }

@@ -25,7 +25,7 @@ function spiralTraverse(array) {
     let startRow = 0, endRow = array.length - 1;
     let startCol = 0, endCol = array[0].length - 1;
 
-    while (startCol <= endRow && startCol <= endCol) {
+    while (startRow <= endRow && startCol <= endCol) {
         // go right
         for (let col = startCol; col <= endCol; col++) {
             result.push(array[startRow][col]);

@@ -172,7 +172,6 @@ function boggleBoard(board, words) {
                 if (word[0] !== board[rowIdx][colIdx]) continue;
                 let temp = traverse(rowIdx, colIdx, board, word);
                 if (temp && temp.size === word.length) result.push(word);
-                temp && console.log(temp);
             }
         }
     }
@@ -184,6 +183,7 @@ function traverse(rowIdx, colIdx, board, word, idx = 0, history = new CellsMap()
     if (word[idx] !== board[rowIdx][colIdx]) return null;
     if (history.size === word.length) return history;
 
+    // for a case when we got a dead end, but have another way with that same letter
     if (
         history.getLast() &&
         history.getLast().value === board[rowIdx][colIdx] &&
@@ -192,6 +192,7 @@ function traverse(rowIdx, colIdx, board, word, idx = 0, history = new CellsMap()
         history.removeLast();
     }
 
+    //hit
     if (word[idx] === board[rowIdx][colIdx]) {
         history.set(`${rowIdx}${colIdx}`, board[rowIdx][colIdx]);
     }

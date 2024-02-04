@@ -17,13 +17,15 @@
 *         /     \
 *        3       -2
 *      /   \    /  \
-*     6    -5  5    2
+*     6    -4  5    2
 *   /
 *  2
 *
-* Sample Output
-*     6   * Remove the edge to the left of the root node,
-*         * creating two trees, each with sums of 6
+* Sample Output:
+*   remove edge(1 -> -2) therefore we will receive two trees with sum of 7:
+*   1) 2 -> 5
+*   2) 3 -> 6 -> 2 -> -4
+*
 */
 
 class BinaryTree {
@@ -34,31 +36,53 @@ class BinaryTree {
     }
 }
 
-// todo
-// I need to find a node with value that equals to sum of left subtree and right subtree
+// for each edge we should have sum of right and left sub-trees
+// HashMap like
+// 1  { 3, -2 }
+// 3  { 6 -4 }
+// 6  { 2 }
+// -2 { 5, 2 }
 function splitBinaryTree(tree) {
-    let leftParams = {sum: 0, values: []}
-    let rightParams = {sum: 0, values: []}
-
-    // Math.abs of right sum - left sum => if we have a node.value = dff return it
-    let leftResult = getSum(tree.left, leftParams);
-    let rightResult = getSum(tree.right, rightParams);
-    console.log(leftResult, rightParams)
-    return -1;
+    let subTreesSums = new Map();
+    let leftSum = getLeafSum(tree.left, 0,subTreesSums);
+    let rightSum = getLeafSum(tree.right, 0, subTreesSums);
+    console.log(leftSum, rightSum, subTreesSums);
+    let result1 = traverse(tree.left, tree, leftSum, rightSum + tree.value);
+    let result2 = traverse(tree.right, tree, rightSum, leftSum + tree.value);
+    console.log(result1, result2)
 }
 
-function getSum(node, params = {sum: 0, values: []}) {
-    if (!node) return params;
-    params.sum += node.value;
-    params.values.push(node.value)
+function getLeafSum(node, sum = 0, subTreeSums = new Map()) {
+    if (!node) return 0;
+    sum += node.value;
     if (node.left) {
-        getSum(node.left, params);
+        sum = getLeafSum(node.left, sum);
+        // subTreeSums.set(node.left.value, sum)
     }
+
     if (node.right) {
-        getSum(node.right, params);
+        sum = getLeafSum(node.right, sum);
     }
-    return params;
+    subTreeSums.set(node.value, sum)
+    return sum;
 }
+
+function traverse(node, ancestor, subtreeSum_1, subtreeSum_2) {
+    let afterEdgeRemovalSubTreeSum = subtreeSum_1 - node.value - ancestor.value;
+    if (afterEdgeRemovalSubTreeSum === subtreeSum_2) {
+        return afterEdgeRemovalSubTreeSum;
+    };
+
+    if (node.left) {
+        return traverse(node.left, node, subtreeSum_1, subtreeSum_2 + ancestor.value);
+    }
+
+    if (node.right) {
+        return traverse(node.right, node, subtreeSum_1, subtreeSum_2 + ancestor.value);
+    }
+    return null;
+}
+
 
 let tree = {
     value: 1,
@@ -71,7 +95,7 @@ let tree = {
             }
         },
         right: {
-            value: -5,
+            value: -4,
         }
     },
     right: {

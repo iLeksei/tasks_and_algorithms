@@ -30,5 +30,29 @@
 
 
 function reversePolishNotation(tokens) {
-    return -1;
+    if (tokens.length === 1) return +tokens[0];
+    let stack = [tokens[0]];
+    let idx = 1;
+    let operations = {
+        "+": (l, r) => (+l) + (+r),
+        "*": (l, r) => l * r,
+        "/": (l, r) => Math.trunc(r / l),
+        "-": (l, r) => r - l,
+    }
+
+    while(idx < tokens.length) {
+        let token = tokens[idx];
+        if (!(token in operations)) {
+            stack.push(token);
+        } else {
+            let res = operations[token](stack.pop(), stack.pop());
+            if (idx === tokens.length - 1) return res;
+            stack.push(res);
+        }
+        idx++;
+    }
 }
+
+console.log(reversePolishNotation(["10","6","9","3","+","-11","*","/","*","17","+","5","+"])); //22
+console.log(reversePolishNotation(["4","13","5","/","+"])); //6
+console.log(reversePolishNotation(["4","3","-"])); //1

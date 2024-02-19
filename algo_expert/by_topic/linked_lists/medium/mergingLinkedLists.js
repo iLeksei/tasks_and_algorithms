@@ -22,14 +22,48 @@
 
 // This is an input class. Do not edit.
 class LinkedList {
-    constructor(value) {
-        this.value = value;
+    constructor(val) {
+        this.val = val;
         this.next = null;
     }
 }
 
 
-function mergingLinkedLists(linkedListOne, linkedListTwo) {
-    // Write your code here.
-    return null;
+function mergingLinkedLists(list1, list2) {
+    let head = null;
+    let tail = null;
+    let smallestNode = Infinity;
+
+    while (list1 !== null || list2 !== null) {
+        if (list2 === null || (list1 !== null && list1.val < list2.val)) {
+            smallestNode = list1;
+            list1 = list1.next;
+        } else {
+            smallestNode = list2;
+            list2 = list2.next;
+        }
+
+        if (!head) {
+            head = smallestNode;
+            tail = head;
+        } else {
+            tail.next = smallestNode;
+            tail = tail.next;
+        }
+    }
+
+    return head;
 }
+
+// let l3 = new LinkedList(3);
+let l2 = new LinkedList(2);
+let list1 = new LinkedList(1);
+list1.next = l2;
+// l2.next = l3;
+//
+// let l5 = new LinkedList(5);
+let l4 = new LinkedList(4);
+let list2 = new LinkedList(1);
+list2.next = l4;
+// l4.next = l5;
+console.log(JSON.stringify(mergingLinkedLists(list1, list2)));

@@ -38,6 +38,44 @@ class LinkedList {
     }
 }
 
-function removeKthNodeFromEnd(head, k) {
-    // Write your code here.
+function removeKthNodeFromEnd(head, n) {
+    if (!head.next) return null;
+    let prevNode = null;
+    let currentNode = head;
+    let length = 1;
+    let idx = 0;
+
+    while (currentNode.next !== null) {
+        length++;
+        currentNode = currentNode.next;
+    }
+
+    currentNode = head;
+    while (currentNode !== null) {
+        if (idx === length - n) {
+            if (prevNode) {
+                prevNode.next = currentNode.next;
+            } else {
+                head = currentNode.next;
+            }
+            return head;
+        }
+        idx++;
+        prevNode = currentNode;
+        currentNode = currentNode.next;
+    }
+    return head;
 }
+
+let l6 = new LinkedList(6);
+let l5 = new LinkedList(5);
+let l4 = new LinkedList(4);
+let l3 = new LinkedList(3);
+let l2 = new LinkedList(2);
+let head= new LinkedList(1);
+head.next = l2;
+l2.next = l3;
+l3.next = l4;
+l4.next = l5;
+l5.next = l6;
+console.log(JSON.stringify(removeKthNodeFromEnd(head, 2))); // 1 -> 2 -> 3 -> 4 -> 6

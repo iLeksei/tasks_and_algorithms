@@ -53,4 +53,4 @@ const linkedList = {
     }
 }
 
-console.log(removeDuplicatesFromLinkedList(linkedList));
+console.log(removeDuplicatesFromLinkedList2(linkedList));

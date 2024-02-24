@@ -12,12 +12,36 @@
 * 5
 */
 
-function quickselect(array, k) {
-    let result = Array(k).fill(0);
-    let i = 0;
-    let counter = 0;
+function findKthLargest(nums, k) {
+    let result = quickSelect(nums, 0, nums.length - 1, k);
+    return result;
+};
 
-    while (i < array.length) {
+function quickSelect(arr, leftBorder, rightBorder, k) {
+    let pivotIdx = leftBorder + Math.floor(Math.random() * (rightBorder - leftBorder + 1 ));
+    let pivotNum = arr[pivotIdx];
+    let leftCursor = leftBorder;
+    let rightCursor = rightBorder;
 
+    while(leftCursor <= rightCursor) {
+        while(arr[leftCursor] < pivotNum) leftCursor++;
+        while(arr[rightCursor] > pivotNum) rightCursor--;
+
+        if (arr[rightCursor] >= arr[leftCursor]) {
+            let temp = arr[rightCursor];
+            arr[rightCursor] = arr[leftCursor];
+            arr[leftCursor] = temp;
+            leftCursor++;
+            rightCursor--;
+        }
+
+        if (rightBorder <= arr.length - k) {
+            return arr[arr.length -k];
+        }
+
+        if (leftBorder < rightCursor) quickSelect(arr, leftBorder, rightCursor, k);
+        if (leftCursor < rightBorder) quickSelect(arr, leftCursor, rightBorder, k);
     }
+
+
 }

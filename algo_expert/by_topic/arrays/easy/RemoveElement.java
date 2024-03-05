@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 void main(String[] args) {
     System.out.println(removeElement(new int[]{0,1,2,2,3,0,4,2}, 2));
 }

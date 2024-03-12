@@ -1,5 +1,3 @@
-
-    
 //     Write a function that takes in an array of unique integers and returns an
 //     array of all permutations of those integers in no particular order.
 //
@@ -11,6 +9,21 @@
 // [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
 
 
-function getPermutations(array) {
-    // Write your code here.
+let result = new Set();
+
+function getPermutations(nums = [], sublist = []) {
+    if (nums.length === sublist.length) {
+        result.add([...sublist]);
+        return;
+    }
+
+    for (const num of nums) {
+        if (sublist.includes(num)) continue;
+        sublist.push(num);
+        getPermutations(nums, sublist);
+        sublist.pop();
+    }
 }
+
+getPermutations([1, 2, 3]);
+console.log(result); // [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]

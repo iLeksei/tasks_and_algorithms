@@ -3,8 +3,6 @@ import java.util.ArrayList;
 void main(String[] args) {
     System.out.println(findArraySum(new int[]{1,2,3}));
     f(3, "");
-    ArrayList<Integer> objects = new ArrayList<>();
-    objects.removeLast();
 }
 
 int findArraySum(int[] arr) {
